@@ -26,8 +26,8 @@ MODEL:
 
 # Optimization arguments.
 OPTIM:
-  BATCH: 16
-  EPOCHS: 100
+  BATCH: 12
+  EPOCHS: 60
   # EPOCH_DECAY: [10]
   LR_INITIAL: 2e-4
   LR_MIN: 1e-6
@@ -35,9 +35,9 @@ OPTIM:
 
 TRAINING:
   VAL_AFTER_EVERY: 1
-  RESUME: True
+  RESUME: False
   TRAIN_PS: 256
-  VAL_PS: 256
+  VAL_PS: 512
   TRAIN_DIR: './datasets/SIDD_NEW/train'       # path to training data
   VAL_DIR: './datasets/SIDD_NEW/test' # path to validation data
   SAVE_DIR: './checkpoints'           # path to save models and images

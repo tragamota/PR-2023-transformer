@@ -10,7 +10,7 @@ from natsort import natsorted
 from glob import glob
 import cv2
 import argparse
-from model.SUNet import SUNet_model
+from model.dncnn import DnCNN
 import math
 from tqdm import tqdm
 import yaml
@@ -84,7 +84,7 @@ if len(files) == 0:
     raise Exception(f"No files found at {inp_dir}")
 
 # Load corresponding model architecture and weights
-model = SUNet_model(opt)
+model = DnCNN(channels=3, num_of_layers=17)
 model.cuda()
 
 load_checkpoint(model, args.weights)
@@ -97,8 +97,6 @@ model_img = args.size
 
 for file_ in files:
     img = Image.open(file_).convert('RGB')
-    img = img.resize((img.width // 4, img.height // 4))
-    print(img.width)
     input_ = TF.to_tensor(img).unsqueeze(0).cuda()
     with torch.no_grad():
         # pad to multiple of 256

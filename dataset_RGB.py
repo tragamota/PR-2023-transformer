@@ -118,8 +118,8 @@ class DataLoaderVal(Dataset):
 
         # Validate on center crop
         if self.ps is not None:
-            inp_img = TF.center_crop(inp_img, (ps, ps))
-            tar_img = TF.center_crop(tar_img, (ps, ps))
+            inp_img = TF.resize(inp_img, (ps, ps))
+            tar_img = TF.resize(tar_img, (ps, ps))
 
         inp_img = TF.to_tensor(inp_img)
         tar_img = TF.to_tensor(tar_img)
